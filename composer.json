@@ -1,0 +1,24 @@
+{
+    "name": "ashrafakl/yii2-jsTree",
+    "description": "The yii2-jsTree extension is a Yii2 wrapper widget for the jstree plugin",
+    "keywords": ["yii2", "extension", "widget", "jstree"],
+    "homepage": "https://github.com/ashrafakl/yii2-jsTree",
+    "type": "yii2-extension",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ashraf Akl",
+            "email": "ashrafakl@yahoo.com",
+            "homepage": "http://www.ashrafakl.com/"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "*",
+        "bower-asset/jstree": "^3.3.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "ashrafakl\\": ""
+        }
+    }
+}
