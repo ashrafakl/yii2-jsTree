@@ -177,9 +177,9 @@ trait WidgetTrait
      * Executes the widget.
      */
     protected function runWidget()
-    {
-        echo Html::beginTag('div', $this->options);
+    {        
         $content = ob_get_clean();
+        echo Html::beginTag('div', $this->options);
         echo $content;
         if ($this->treeList) {
             echo $this->renderTreelist();
