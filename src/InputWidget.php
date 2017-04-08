@@ -30,16 +30,7 @@ class InputWidget extends BaseInputWidget
     public function init()
     {
         parent::init();
-        $this->initWidget();
-        if (!$this->hasModel()) {
-            echo Html::hiddenInput($this->name, $this->value, ['id' => "{$this->id}-input"]);
-        } else {
-            if (empty($this->pluginOptions['core']['multiple'])) {
-                echo Html::activeHiddenInput($this->model, $this->attribute, ['id']);
-            } else {
-                echo Html::activeListBox($this->model, $this->attribute, [], ['class' => 'hidden', 'multiple' => 'multiple']);
-            }
-        }
+        $this->initWidget();        
     }
 
     /**
@@ -68,7 +59,7 @@ class InputWidget extends BaseInputWidget
             }";
         } else {            
             $this->pluginEvents['changed.jstree'] = "function(event, data, x){                                                
-                if(!selected && data.selected){
+                if(data.selected){
                     var selected = '';                    
                     for(var i in data.selected){
                         selected += '<option value=\"' + data.selected[i] +'\" selected=\"selected\">' + data.selected[i] +'</option>';
@@ -78,7 +69,23 @@ class InputWidget extends BaseInputWidget
                 }
             }";
         }
-        $this->runWidget();
+        $inputContent = '';
+        if (!$this->hasModel()) {
+            if (empty($this->pluginOptions['core']['multiple'])) {
+                $inputContent = Html::hiddenInput($this->name, $this->value, ['id' => "{$this->id}-input"]);
+            }
+            else{
+                $inputContent = Html::listBox($this->name, $this->value, [], ['class' => 'hidden', 'multiple' => 'multiple']);
+            }
+            
+        } else {
+            if (empty($this->pluginOptions['core']['multiple'])) {
+                $inputContent = Html::activeHiddenInput($this->model, $this->attribute);
+            } else {
+                $inputContent = Html::activeListBox($this->model, $this->attribute, [], ['class' => 'hidden', 'multiple' => 'multiple']);
+            }
+        }
+        $this->runWidget($inputContent);
     }
 
 }

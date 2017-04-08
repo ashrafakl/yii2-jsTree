@@ -175,16 +175,18 @@ trait WidgetTrait
 
     /**
      * Executes the widget.
+     * @param string $beforeTree content to be apended before rendered the tree
      */
-    protected function runWidget()
+    protected function runWidget($beforeTree = null)
     {        
         $content = ob_get_clean();
-        echo Html::beginTag('div', $this->options);
+        echo $beforeTree;
+        echo Html::beginTag('div', $this->options);        
         echo $content;
         if ($this->treeList) {
             echo $this->renderTreelist();
-        }
-        echo Html::endTag("div");
+        }        
+        echo Html::endTag("div");        
         $this->registerPlugin();
     }
 
