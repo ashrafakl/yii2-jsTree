@@ -110,7 +110,7 @@ trait WidgetTrait
         return [
             'core' => [
                 'themes' => [
-                    'reponsive' => true,
+                    'responsive' => true,
                     'stripes' => true,
                     'dots' => false,
                     'ellipsis' => false,
